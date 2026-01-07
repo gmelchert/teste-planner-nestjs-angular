@@ -1,0 +1,37 @@
+<div class="recipe-detail">
+  @if (isLoading()) {
+    <p>Carregando...</p>
+  } @else {
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    } @else {
+      @if (recipe()) {
+        <h1>{{ recipe()!.title }}</h1>
+        <p><strong>Categoria:</strong> {{ recipe()!.category.name }}</p>
+        <p>{{ recipe()!.description }}</p>
+
+        <div class="meta">
+          <p><strong>Tempo de preparo:</strong> {{ recipe()!.preparationTime }} min</p>
+          <p><strong>Rendimento:</strong> {{ recipe()!.servings }} porções</p>
+          <p><strong>Dificuldade:</strong> {{ recipe()!.difficulty | titlecase }}</p>
+        </div>
+
+        <h2>Ingredientes</h2>
+        <ul>
+          @for (ingredient of recipe()!.ingredients; track ingredient) {
+            <li>{{ ingredient }}</li>
+          }
+        </ul>
+
+        <h2>Modo de preparo</h2>
+        <ol>
+          @for (step of recipe()!.instructions; track step) {
+            <li>{{ step }}</li>
+          }
+        </ol>
+
+        <app-button label="Voltar" (click)="goBack()"></app-button>
+      }
+    }
+  }
+</div>

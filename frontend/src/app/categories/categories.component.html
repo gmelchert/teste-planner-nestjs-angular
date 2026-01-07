@@ -1,0 +1,25 @@
+<div class="categories-page">
+  <h1>Categorias</h1>
+
+  @if (isLoading) {
+    <p>Carregando categorias...</p>
+  } @else {
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    } @else {
+      <div class="category-cards">
+        @if (categories.length > 0) {
+          @for (category of categories; track category.id) {
+            <app-card
+              [title]="category.name"
+              [description]="category.description"
+              [link]="'/recipes?categoryId=' + category.id"
+            ></app-card>
+          }
+        } @else {
+          <p>Nenhuma categoria encontrada.</p>
+        }
+      </div>
+    }
+  }
+</div>

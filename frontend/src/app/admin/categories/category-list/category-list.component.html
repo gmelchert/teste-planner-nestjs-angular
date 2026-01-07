@@ -1,0 +1,32 @@
+<div class="category-list">
+  <div class="header">
+    <h1>Categorias</h1>
+
+    <app-button
+      label="Nova Categoria"
+      (click)="newCategory()"
+    ></app-button>
+  </div>
+
+  @if (isLoading()) {
+    <p>Carregando categorias...</p>
+  } @else {
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    } @else {
+      <div class="cards">
+        @for (category of categories(); track category.id) {
+          <app-card
+            [title]="category.name"
+            [description]="category.description"
+          >
+            <div class="actions" slot="actions">
+              <app-button class="edit" label="Editar" (click)="edit(category)"></app-button>
+              <app-button class="delete" label="Excluir" (click)="deleteCategory(category)"></app-button>
+            </div>
+          </app-card>
+        }
+      </div>
+    }
+  }
+</div>

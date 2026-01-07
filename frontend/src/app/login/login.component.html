@@ -1,0 +1,27 @@
+<div class="login">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h1>Login</h1>
+
+    <app-input
+      label="Email"
+      type="email"
+      [control]="$any(form.get('email'))"
+    />
+
+    <app-input
+      label="Senha"
+      type="password"
+      [control]="$any(form.get('password'))"
+    />
+
+    @if (error) {
+      <p class="error">{{ error }}</p>
+    }
+
+    <app-button
+      type="submit"
+      label="Entrar"
+      [loading]="isLoading"
+    />
+  </form>
+</div>

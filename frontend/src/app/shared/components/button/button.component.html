@@ -1,0 +1,11 @@
+<button
+  [type]="type"
+  [disabled]="disabled || loading"
+  [class]="class"
+>
+  @if (loading) {
+    Carregando...
+  } @else {
+    {{ label }}
+  }
+</button>

@@ -1,0 +1,39 @@
+<div class="recipe-edit">
+  <h1>@if(isEdit()) { Editar Receita } @else { Nova Receita }</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <app-input type="text" label="Título" [control]="form.controls.title"></app-input>
+    <app-input type="text" label="Descrição" [control]="form.controls.description"></app-input>
+    <app-input type="text" label="Ingredientes (separar por linha)" [control]="form.controls.ingredients"></app-input>
+    <app-input type="text" label="Instruções (separar por linha)" [control]="form.controls.instructions"></app-input>
+    <app-input label="Tempo de preparo (min)" type="number" [control]="form.controls.preparationTime"></app-input>
+    <app-input label="Porções" type="number" [control]="form.controls.servings"></app-input>
+
+    <app-select
+      label="Dificuldade"
+      [control]="form.controls.difficulty"
+      [options]="[
+        { id: 'easy', name: 'Fácil' },
+        { id: 'medium', name: 'Médio' },
+        { id: 'hard', name: 'Difícil' }
+      ]"
+      optionLabel="name"
+      optionValue="id"
+    ></app-select>
+
+    <app-select
+      label="Categoria"
+      [control]="form.controls.categoryId"
+      [options]="categories()"
+      optionLabel="name"
+      optionValue="id"
+    ></app-select>
+
+    @if (isEdit()) {
+      <app-button type="submit" label="Salvar" [loading]="isLoading()"></app-button>
+    } @else {
+      <app-button type="submit" label="Criar" [loading]="isLoading()"></app-button>
+    }
+
+  </form>
+</div>

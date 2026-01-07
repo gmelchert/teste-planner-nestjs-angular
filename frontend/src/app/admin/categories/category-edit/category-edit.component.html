@@ -1,0 +1,13 @@
+<div class="category-edit">
+  <h1>@if(isEdit()) { Editar Categoria } @else { Nova Categoria }</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <app-input type="text" label="Nome" [control]="form.controls.name"></app-input>
+    <app-input type="text" label="Descrição" [control]="form.controls.description"></app-input>
+    @if (isEdit()) {
+      <app-button type="submit" label="Salvar" [loading]="isLoading()"></app-button>
+    } @else {
+      <app-button type="submit" label="Criar" [loading]="isLoading()"></app-button>
+    }
+  </form>
+</div>

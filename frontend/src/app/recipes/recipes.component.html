@@ -1,0 +1,38 @@
+<div class="recipes">
+  <h1>Receitas</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()" class="filters">
+    <app-input type="text" label="Buscar" [control]="form.controls.search"></app-input>
+
+    <app-select
+      label="Categoria"
+      [control]="form.controls.categoryId"
+      [options]="categories()"
+      optionLabel="name"
+      optionValue="id"
+    ></app-select>
+
+    <app-button type="submit" label="Filtrar" [loading]="isLoading()"></app-button>
+
+    <app-button type="button" label="Login" (click)="navigate('/login')" class="btn-login"></app-button>
+  </form>
+
+  @if (error()) {
+    <p class="error">{{ error() }}</p>
+  }
+
+  <div class="list">
+    @if (recipes().length > 0) {
+      @for (recipe of recipes(); track recipe.id) {
+        <app-card
+          [title]="recipe.title"
+          [subtitle]="recipe.category.name"
+          [description]="recipe.description"
+          [link]="'/recipes/' + recipe.id"
+        ></app-card>
+      }
+    } @else {
+      <p>Nenhuma receita encontrada</p>
+    }
+  </div>
+</div>

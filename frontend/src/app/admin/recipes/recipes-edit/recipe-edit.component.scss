@@ -1,0 +1,14 @@
+.recipe-edit {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+
+  app-input, app-select, app-button {
+    margin-bottom: 1rem;
+  }
+}

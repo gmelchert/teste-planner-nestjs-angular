@@ -1,0 +1,15 @@
+.category-edit {
+  max-width: 500px;
+  margin: 0 auto;
+  padding: 2rem;
+
+  form {
+    display: flex;
+    flex-direction: column;
+
+    app-input,
+    app-button {
+      margin-bottom: 1rem;
+    }
+  }
+}

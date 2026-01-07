@@ -1,0 +1,29 @@
+<div class="recipe-list">
+  <div class="header">
+    <h1>Receitas</h1>
+    <app-button label="Nova Receita" (click)="newRecipe()"></app-button>
+  </div>
+
+  @if (isLoading()) {
+    <p>Carregando...</p>
+  } @else {
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    } @else {
+      <div class="cards">
+        @for (recipe of recipes(); track recipe.id) {
+          <app-card
+            [title]="recipe.title"
+            [subtitle]="recipe.category.name"
+            [description]="recipe.description"
+          >
+            <div class="actions" slot="actions">
+              <app-button class="edit" label="Editar" (click)="edit(recipe)"></app-button>
+              <app-button class="delete" label="Excluir" (click)="deleteRecipe(recipe)"></app-button>
+            </div>
+          </app-card>
+        }
+      </div>
+    }
+  }
+</div>

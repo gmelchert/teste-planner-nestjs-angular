@@ -1,0 +1,8 @@
+<div class="card" [routerLink]="link ? link : null">
+  <h3>{{ title }}</h3>
+  @if(subtitle) { <h4>{{ subtitle }}</h4> }
+  @if(description) { <p>{{ description }}</p> }
+  <div class="card-footer">
+    <ng-content select="[slot=actions]"></ng-content>
+  </div>
+</div>

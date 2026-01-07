@@ -1,0 +1,9 @@
+<div class="field">
+  <label>{{ label }}</label>
+  <select [formControl]="control">
+    <option value="">Selecione</option>
+    @for (option of getOptions(); track option.value) {
+      <option [value]="option.value">{{ option.label }}</option>
+    }
+  </select>
+</div>
